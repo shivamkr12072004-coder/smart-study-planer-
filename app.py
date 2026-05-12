@@ -7,15 +7,16 @@ def home():
 
     if request.method == 'POST':
 
-        subjects = request.form['subjects']
-        hours = request.form['hours']
-        date = request.form['date']
+        subjects = request.form.get('subjects')
+        hours = request.form.get('hours')
+        date = request.form.get('date')
 
         subject_list = subjects.split(',')
 
         timetable = []
 
         for i, subject in enumerate(subject_list):
+
             timetable.append({
                 "day": f"Day {i+1}",
                 "subject": subject.strip(),
