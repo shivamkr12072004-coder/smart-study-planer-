@@ -1,70 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Timetable</title>
+    <title>Study Plan</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            background: #f2f2f2;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-        .container {
-            background: white;
-            padding: 20px;
-            margin: 50px auto;
-            width: 400px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px gray;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #3498db;
-            color: white;
-        }
-
-        td, th {
-            padding: 10px;
-            border: 1px solid black;
-        }
-
-        a {
-            text-decoration: none;
-            color: purple;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
 
 <div class="container">
-    <h1>📅 Your Study Plan</h1>
+
+    <h1>📘 Your Study Plan</h1>
+
+    <h3>Date: {{ date }}</h3>
 
     <table>
+
         <tr>
             <th>Day</th>
             <th>Subject</th>
             <th>Time</th>
         </tr>
 
-        {% for day, sub, time in timetable %}
+        {% for item in timetable %}
+
         <tr>
-            <td>{{ day }}</td>
-            <td>{{ sub }}</td>
-            <td>{{ time }}</td>
+            <td>{{ item.day }}</td>
+            <td>{{ item.subject }}</td>
+            <td>{{ item.time }}</td>
         </tr>
+
         {% endfor %}
+
     </table>
 
     <br>
+
     <a href="/">⬅ Back</a>
+
 </div>
 
 </body>
