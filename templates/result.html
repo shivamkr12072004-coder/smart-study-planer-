@@ -2,42 +2,38 @@
 <html>
 <head>
     <title>Study Plan</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>📘 Your Study Plan</h1>
+<h1>📘 Your Study Plan</h1>
 
-    <h3>Date: {{ date }}</h3>
+<table>
 
-    <table>
+<tr>
+    <th>Day</th>
+    <th>Subject</th>
+    <th>Time</th>
+</tr>
 
-        <tr>
-            <th>Day</th>
-            <th>Subject</th>
-            <th>Time</th>
-        </tr>
+{% for item in timetable %}
 
-        {% for item in timetable %}
+<tr>
+    <td>{{ item.day }}</td>
+    <td>{{ item.subject }}</td>
+    <td>{{ item.time }}</td>
+</tr>
 
-        <tr>
-            <td>{{ item.day }}</td>
-            <td>{{ item.subject }}</td>
-            <td>{{ item.time }}</td>
-        </tr>
+{% endfor %}
 
-        {% endfor %}
+</table>
 
-    </table>
+<br>
 
-    <br>
-
-    <a href="/">⬅ Back</a>
+<a href="/">⬅ Back</a>
 
 </div>
 
