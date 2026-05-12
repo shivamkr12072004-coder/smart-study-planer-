@@ -2,35 +2,32 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/", methods=["GET", "POST"])
 def home():
 
-    if request.method == 'POST':
+    if request.method == "POST":
 
-        subjects = request.form.get('subjects')
-        hours = request.form.get('hours')
-        date = request.form.get('date')
+        subjects = request.form.get("subjects")
+        days = int(request.form.get("days"))
 
-        subject_list = subjects.split(',')
+        subject_list = subjects.split(",")
 
         timetable = []
 
-        for i, subject in enumerate(subject_list):
+        for i in range(days):
 
             timetable.append({
                 "day": f"Day {i+1}",
-                "subject": subject.strip(),
-                "time": f"{hours} Hours"
+                "subject": subject_list[i % len(subject_list)].strip(),
+                "time": "Morning" if i % 2 == 0 else "Evening"
             })
 
         return render_template(
-            'result.html',
-            timetable=timetable,
-            date=date
+            "result.html",
+            timetable=timetable
         )
 
-    return render_template('index.html')
+    return render_template("index.html")
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
